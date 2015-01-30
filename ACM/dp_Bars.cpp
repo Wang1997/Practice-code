@@ -1,30 +1,30 @@
 /**
  * @author CLD
- * 2015Äê1ÔÂ30ÈÕ
- * 										¶¯Ì¬¹æ»®¡ª¡ª¸ÖÌõÇÐ¸î
- * ¸ø¶¨Ò»¸ö³¤¶ÈÎªnµÄ¸ÖÌõºÍÒ»¸ö¼Û¸ñ±íP_i(i=1,2,3,¡¤¡¤¡¤,n),Çó¸ÖÌõÇÐ¸î·½°¸£¬Ê¹µÃÀûÈór_i(i=1,2,3,¡¤¡¤¡¤,n)×î´ó
- * 										¸ø¶¨¼Û¸ñ±íÈçÏÂ£º
- *								 i£º 1, 2, 3, 4, 5, 6, 7, 8, 9,10
- * 								 p£º 1, 5, 8, 9,10,17,17,20,24,30
+ * 2015å¹´1æœˆ30æ—¥
+ * 					åŠ¨æ€è§„åˆ’â€”â€”é’¢æ¡åˆ‡å‰²
+ * ç»™å®šä¸€ä¸ªé•¿åº¦ä¸ºnçš„é’¢æ¡å’Œä¸€ä¸ªä»·æ ¼è¡¨P_i(i=1,2,3,Â·Â·Â·,n),æ±‚é’¢æ¡åˆ‡å‰²æ–¹æ¡ˆï¼Œä½¿å¾—åˆ©æ¶¦r_i(i=1,2,3,Â·Â·Â·,n)æœ€å¤§
+ * 					ç»™å®šä»·æ ¼è¡¨å¦‚ä¸‹ï¼š
+ *				iï¼š 1, 2, 3, 4, 5, 6, 7, 8, 9,10
+ * 				pï¼š 1, 5, 8, 9,10,17,17,20,24,30
  */
 
-#include <cstdio>//¼Ì³ÐÓëCµÄÊäÈëÊä³ö±ê×¼¿â
-#include <algorithm>//Ëã·¨±ê×¼¿â
-using namespace std;//´Ë´úÂëÃ»ÓÃµ½,Ï°¹ßÐÔ¸½¼Ó.
+#include <cstdio>//ç»§æ‰¿ä¸ŽCçš„è¾“å…¥è¾“å‡ºæ ‡å‡†åº“
+#include <algorithm>//ç®—æ³•æ ‡å‡†åº“
+using namespace std;//æ­¤ä»£ç æ²¡ç”¨åˆ°,ä¹ æƒ¯æ€§é™„åŠ .
 
 int main() {
-	const int LEN=10;//¸ÖÌõµÄ³¤¶È£¬Ò²¼´¼Û¸ñ±íºÍÀûÈó±íµÄ³¤¶È
-	int p[LEN+1]={0,1, 5, 8, 9,10,17,17,20,24,30};//¼Û¸ñ±í
-	int r[LEN+1]={0};//³õÊ¼»¯ÀûÈó±í,³¤¶ÈÎªÁãµÄ¸ÖÌõÀûÈóÎªÁã.
+	const int LEN=10;//é’¢æ¡çš„é•¿åº¦ï¼Œä¹Ÿå³ä»·æ ¼è¡¨å’Œåˆ©æ¶¦è¡¨çš„é•¿åº¦
+	int p[LEN+1]={0,1, 5, 8, 9,10,17,17,20,24,30};//ä»·æ ¼è¡¨
+	int r[LEN+1]={0};//åˆå§‹åŒ–åˆ©æ¶¦è¡¨,é•¿åº¦ä¸ºé›¶çš„é’¢æ¡åˆ©æ¶¦ä¸ºé›¶.
 	for (int len = 1; len <= LEN; ++len) {
-		//¼ÆËã³¤¶ÈÎªlenµÄ¸ÖÌõµÄÀûÈó
-		int temp = -1;//ÔÝÊ±±£´æ×î´óÀûÈó
+		//è®¡ç®—é•¿åº¦ä¸ºlençš„é’¢æ¡çš„åˆ©æ¶¦
+		int temp = -1;//æš‚æ—¶ä¿å­˜æœ€å¤§åˆ©æ¶¦
 		for (int index = 1; index <= len; ++index) {
-			//Ñ¡³ö×îÓÅ·½°¸,ÒÀ¿¿ÒÑ¾­¼ÆËã³öÀ´µÄÀûÈóÀ´¼ÆËãµ±Ç°ÀûÈó
+			//é€‰å‡ºæœ€ä¼˜æ–¹æ¡ˆ,ä¾é å·²ç»è®¡ç®—å‡ºæ¥çš„åˆ©æ¶¦æ¥è®¡ç®—å½“å‰åˆ©æ¶¦
 			temp = max(temp,p[index]+r[len-index]);
 		}
-		r[len] = temp;//½«µ±Ç°³¤¶ÈµÄ½á¹û±£´æ¹©ÏÂ´Î¼ÆËãÊ¹ÓÃ.
+		r[len] = temp;//å°†å½“å‰é•¿åº¦çš„ç»“æžœä¿å­˜ä¾›ä¸‹æ¬¡è®¡ç®—ä½¿ç”¨.
 	}
-	printf("%d\n",r[LEN+1]);//´òÓ¡³öÌâÄ¿ÒªÇó³¤¶ÈµÄ×î´óÀûÈó
+	printf("%d\n",r[LEN+1]);//æ‰“å°å‡ºé¢˜ç›®è¦æ±‚é•¿åº¦çš„æœ€å¤§åˆ©æ¶¦
 	return 0;
 }
